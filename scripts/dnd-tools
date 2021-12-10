@@ -141,7 +141,7 @@ art_250 = expand({
 art_750 = expand({
     1: "Silver chalice with moonstones",
     2: "Sliver-plated steel longsword with jet set in hilt",
-    3: "Carved hard of exotic wood with ivory inlay and zirconb gems",
+    3: "Carved hard of exotic wood with ivory inlay and zircon gems",
     4: "Small gold idol",
     5: "Gold dragon comb set with red garnets as eyes",
     6: "Bottle stopper cork embossed with gold leaf and set with amethysts",
@@ -169,7 +169,7 @@ art_7500 = expand({
     2: "Jeweled platinum ring",
     3: "Small gold statuette set with rubies",
     4: "Gold cup set with emeralds",
-    5: "Gold jewlery box with platinum filigree",
+    5: "Gold jewelry box with platinum filigree",
     6: "Painted gold child sarcophagus",
     7: "Jade game board with solid gold playing pieces",
     8: "Bejeweled ivory drinking horn with gold filigree"
@@ -237,10 +237,10 @@ item_c = expand({
     range(58, 62): "Potion of invulnerability",
     range(63, 67): "Potion of mind reading",
     range(68, 72): "Spell scroll - 5th level",
-    range(73, 75): "Elixer of health",
+    range(73, 75): "Elixir of health",
     range(76, 78): "Oil of etherealness",
     range(79, 81): "Potion of fire giant strength",
-    range(82, 84): "Quaal feather token",
+    range(82, 84): "Quaal\'s feather token",
     range(85, 87): "Scroll of protection",
     range(88, 89): "Bag of beans",
     range(90, 91): "Bead of force",
@@ -269,7 +269,7 @@ item_d = expand({
     range(83, 87): "Potion of vitality",
     range(88, 92): "Spell scroll - 8th level",
     range(93, 95): "Horseshoes of zephyr",
-    range(96, 98): "Nolzur marvelous pigments",
+    range(96, 98): "Nolzur\'s marvelous pigments",
     99: "Bag of devouring",
     100: "Portable hole"
 })
@@ -286,7 +286,7 @@ item_e = expand({
 
 item_f = expand({
     range(1, 15): "Weapon, +1",
-    range(16, 18): "Sheild, +1",
+    range(16, 18): "Shield, +1",
     range(19, 21): "Sentinel shield",
     range(24, 25): "Boots of elvenkind",
     range(26, 27): "Boots of striding and springing",
@@ -304,7 +304,7 @@ item_f = expand({
     range(50, 51): "staff of the adder",
     range(52, 53): "Staff of the python",
     range(54, 55): "Sword of vengeance",
-    range(56, 57): "Trdient of fish command",
+    range(56, 57): "Trident of fish command",
     range(58, 59): "Want of magic missiles",
     range(60, 61): "Wand of the war mage, +1",
     range(62, 63): "Wand of web",
@@ -330,7 +330,7 @@ item_f = expand({
     84: "Helm of telepathy",
     85: "Doss lute of the bards",
     86: "Fochlucan bandor of the bards",
-    87: "Mac-Fuimidh cittern of the bards",
+    87: "Mac-Fuirmidh cittern of the bards",
     88: "Medallion of thoughts",
     89: "Necklace of adaptation",
     90: "Periapt of wound closure",
@@ -352,7 +352,7 @@ item_g = expand({
     16: "Adamantine splint male",
     17: "Amulet of health",
     18: "Armor of vulnerability",
-    19: "Arrow-catching shiled",
+    19: "Arrow-catching shield",
     20: "Belt of dwarvenkind",
     21: "Belt of hill giant strength",
     22: "Berserker axe",
@@ -539,7 +539,7 @@ item_i = expand({
     range(58, 59): "Leather armor, +3",
     range(60, 61): "Plate armor, +1",
     range(62, 63): "Robe of the archmagi",
-    range(64, 65): "Rod of ressurection",
+    range(64, 65): "Rod of resurrection",
     range(66, 67): "Scale mail, +1",
     range(68, 69): "Scarab of protection",
     range(70, 71): "Splint armor, +2",
@@ -651,7 +651,7 @@ card_deck = [
     "Artifact          ",
     "Avenger (1)       ",
     "Beggar (6)        ",
-    "Beserker (6)      ",
+    "Berserker (6)      ",
     "Bishop (8)        ",
     "Broken One        ",
     "Charlatan (7)     ",
@@ -702,15 +702,15 @@ race_short = [
 ]
 
 class_desc = [
-    "Barbarian - The relentless combatant fueld by fury.",
+    "Barbarian - The relentless combatant fueled by fury.",
     "Bard      - A story witty storyteller or musician.",
-    "Cleric    - A holy man capable of helaing wounds.",
+    "Cleric    - A holy man capable of healing wounds.",
     "Druid     - A nomad devoted to the powers of Nature",
     "Fighter   - The skilled combatant and strategist.",
     "Monk      - A martial artist pulling bodily powers.",
     "Paladin   - A novice fighter bolstered by divine magic.",
     "Ranger    - One who blends wilderness knowledge and martial ability",
-    "Rogue     - The theif, assassin, and stealthy character.",
+    "Rogue     - The thief, assassin, and stealthy character.",
     "Sorcerer  - A magic user who draws power from within.",
     "Warlock   - Pacted to a deity for empowering spells.",
     "Wizard    - Keeper of arcane secrets and manipulator of magic."
@@ -729,7 +729,7 @@ class_npc = [
 ]
 
 culture_npc = [
-    "Babylonian", "Celtic", "Egyptian", "Greek", "Roman", "Sumerian", "English", "French", "German", "Italian", "Norse", "Saxon", "Slavic", "Spanish", "Arabic", "Chineese", "Hebrew", "Hindu", "Japanese", "Mongolian", "Persian", "Congolese", "Etheopian", "Malian", "Algonquin", "Aztec", "Inkan", "Inuit", "Navajo", "Sioux"
+    "Babylonian", "Celtic", "Egyptian", "Greek", "Roman", "Sumerian", "English", "French", "German", "Italian", "Norse", "Saxon", "Slavic", "Spanish", "Arabic", "Chineese", "Hebrew", "Hindu", "Japanese", "Mongolian", "Persian", "Congolese", "Ethiopian", "Malian", "Algonquin", "Aztec", "Inkan", "Inuit", "Navajo", "Sioux"
 ]
 
 avg_stats = [
@@ -1453,7 +1453,7 @@ def loot_cr11_fn():
             gem_n = gem_n + rolls
         item_n = random.randint(1, 6)
         for _ in itertools.repeat(None, item_n):
-            item = random.chocie(list(item_c))
+            item = random.choice(list(item_c))
             item = item_c[item]
             item_loot.append(item)
     elif 40 < d100 <= 45:
@@ -2574,7 +2574,7 @@ def reveal_cards_fn():
 
     print("")
     print("Card 4 - ", pos_4)
-    print("Strahd's Enemy (where to find an ally:  This card sheds light on one who will help you greatly in the battle against darkness")
+    print("Strahd\'s Enemy (where to find an ally:  This card sheds light on one who will help you greatly in the battle against darkness")
 
     print("")
     print("card 5 - ", pos_5)
@@ -2689,7 +2689,7 @@ def wild_magic_fn():
             global roll_4
             roll_4 = random.randint(1, 4)
         roll_4_fn()
-        print(roll_4, " flumphs controlled by the DM appear in unoccupied spaces within 60 feet of you and are firghtened of you.  They vanish after 1 minute")
+        print(roll_4, " flumphs controlled by the DM appear in unoccupied spaces within 60 feet of you and are frightened of you.  They vanish after 1 minute")
 
     elif roll in (39, 40):
         def roll_5_fn():
@@ -2704,7 +2704,7 @@ def wild_magic_fn():
             for _ in itertools.repeat(None, 5):
                 days_n = random.randrange(1, 6)
         roll_6_fn()
-        print("You are immiune to being intoxicated by alcohol for the next ", days_n, " days")
+        print("You are immune to being intoxicated by alcohol for the next ", days_n, " days")
     elif roll in (65, 66):
         def roll_7_fn():
             global damage
@@ -2723,7 +2723,7 @@ def wild_magic_fn():
             global damage
             damage = random.randint(1, 10)
         roll_9_fn()
-        print("Each creature within 30 feet of you takes ", damage, " necrotic damage.  You regain hit points equa to the sum damage")
+        print("Each creature within 30 feet of you takes ", damage, " necrotic damage. You regain hit points equal to the sum damage.")
     else:
         pass
 
@@ -3756,7 +3756,7 @@ def skills_fn():
             if x or y == "Arcana":
                 skill_arcana = mod_int + 2
             if x or y == "Deception":
-                slkill_deception = mod_cha + 2
+                skill_deception = mod_cha + 2
             if x or y == "Insight":
                 skill_insight = mod_wis + 2
             if x or y == "Intimidation":
