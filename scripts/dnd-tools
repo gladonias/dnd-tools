@@ -10,6 +10,7 @@ import sys
 import math
 import random
 import itertools
+import numpy as np
 
 try:
     # Use the system PRNG if possible
@@ -811,10 +812,11 @@ def start_fn():
         print("")
         save_fn()
     elif option in ("R", "r", "2"):
-        dice = int(input("How many dice? "))
+        dice = int(input("How many dice you wanna roll? "))
         sides = int(input("How many sides on each die? "))
-        for _ in itertools.repeat(None, dice):
-            print(random.randrange(1, sides))
+        mod = int(input("How much is the modifier? "))
+        dice_array = np.random.randint(1, high=sides + 1, size=dice)
+        print('{} + [{}] = {}'.format(dice_array, mod, sum(dice_array) + mod))
         start_fn()
     elif option == "3":
         n_players = int(input("How many initiative rolls (e.g. players + monsters)? "))
