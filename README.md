@@ -1,6 +1,8 @@
 # dnd-tools
 
-... is a set of interactive command line tools for Dungeons and Dragons 5th Edition.  This is the source code for the python scripts and install functions used to create the [dnd-tools AUR package](https://aur.archlinux.org/packages/dnd-tools/).  The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to create an offline, cross-platform, gamemaster tool set -- since you probably have too many browser windows open already.  :-D
+**dnd-tools** is a set of interactive command line tools for Dungeons and Dragons 5th Edition.
+
+This is the source code for the python scripts and install functions used to create the [dnd-tools AUR package](https://aur.archlinux.org/packages/dnd-tools/).  The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to create an offline, cross-platform, gamemaster tool set -- since you probably have too many browser windows open already.  :-D
 
 ---
 
