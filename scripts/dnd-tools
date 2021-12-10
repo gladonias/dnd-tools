@@ -767,10 +767,10 @@ def start_fn():
     print("        1) (C)reate Character / NPC         ")
     print("        2) (R)oll Dice                      ")
     print("        3) Roll (I)nitiative                ")
-    print("        4) Encounter Experience Calculator  ")
-    print("        5) Get Treasure!                    ")
-    print("        6) Tarokka Fortune Cards            ")
-    print("        7) Wild Magic (Roll Effect)         ")
+    print("        4) Encounter E(x)perience Calculator")
+    print("        5) Get (T)reasure (loot)!           ")
+    print("        6) Tarok(k)a Fortune Cards          ")
+    print("        7) (W)ild Magic (Roll Effect)       ")
     print("        0) (Q)uit                           ")
     print("")
     option = input("What would you like to do? ")
@@ -823,16 +823,16 @@ def start_fn():
         mod = int(input("How much is each modifier? "))
         print('{}'.format(np.random.randint(1, high=21, size=n_players) + mod))
         start_fn()
-    elif option == "4":
+    elif option in ("X", "x", "4"):
         encounter_fn()
         start_fn()
-    elif option == "5":
+    elif option in ("T", "t", "5"):
         loot_menu_fn()
-    elif option == "6":
+    elif option in ("K", "k", "6"):
         draw_cards_fn()
         reveal_cards_fn()
         start_fn()
-    elif option == "7":
+    elif option in ("W", "w", "7")
         wild_magic_fn()
         start_fn()
     elif option in ("Q", "q", "0"):
