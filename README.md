@@ -2,7 +2,9 @@
 
 **dnd-tools** is a set of interactive command line tools for Dungeons and Dragons 5th Edition.
 
-This is the source code for the python scripts and install functions used to create the [dnd-tools AUR package](https://aur.archlinux.org/packages/dnd-tools/).  The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to create an offline, cross-platform, gamemaster tool set -- since you probably have too many browser windows open already.  :-D
+The original repository contains the source code for the python scripts and install functions used to create the [dnd-tools AUR package](https://aur.archlinux.org/packages/dnd-tools/).
+
+The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to create an offline, cross-platform, GM/DM tool set.
 
 ---
 
@@ -12,10 +14,10 @@ This is the source code for the python scripts and install functions used to cre
 - *Character generator:*  any or all stat blocks and features can be randomized
 - *NPC generator:*  35 NPC classes with stat blocks populated as with character creation (fixed NPC stats are in the Monster Manual and many places online)
 - *Save generated character:*  export generated character to text file
-- *Dice roller:*  any number of dice, any number of sides
+- *Dice roller:*  any number of dice, any number of sides, plus modifiers
 - *Encounter calculator:* calculates modified experience per party size / level and monster party size (and CR)
 - *Loot generator:* random loot tables based on CR and number of enemies
-- *Initiative roller:* random d20 rolls for x number of players (raw / without initiaitve bonus)
+- *Initiative roller:* random d20 rolls for n number of players with initiative bonus
 - *Tarokka card game:*  tarot card game from Curse of Strahd
 - *Wild magic effects:*  effect roller for Wild Magic sorcerers
 
@@ -23,8 +25,11 @@ This is the source code for the python scripts and install functions used to cre
 
 #### Installation / Usage:
 
-**Arch**:
-- See [Arch Wiki for Installing AUR Packages](https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages)
+**Arch-based distros**:
+~~~
+yay -S dnd-tools
+~~~
+- Or, see [Arch Wiki for Installing AUR Packages](https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages)
 - [Download snapshot from AUR](https://aur.archlinux.org/packages/dnd-tools/)
 
 **Other Linux**:
