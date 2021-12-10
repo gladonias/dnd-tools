@@ -766,7 +766,7 @@ def start_fn():
     print("        What would you like to do?          ")
     print("        1) (C)reate Character / NPC         ")
     print("        2) (R)oll Dice                      ")
-    print("        3) Roll Initiative (raw)            ")
+    print("        3) Roll (I)nitiative                ")
     print("        4) Encounter Experience Calculator  ")
     print("        5) Get Treasure!                    ")
     print("        6) Tarokka Fortune Cards            ")
@@ -814,14 +814,14 @@ def start_fn():
     elif option in ("R", "r", "2"):
         dice = int(input("How many dice you wanna roll? "))
         sides = int(input("How many sides on each die? "))
-        mod = int(input("How much is the modifier? "))
+        mod = int(input("How much is the total modifier? "))
         dice_array = np.random.randint(1, high=sides + 1, size=dice)
         print('{} + [{}] = {}'.format(dice_array, mod, sum(dice_array) + mod))
         start_fn()
-    elif option == "3":
+    elif option in ("I", "i", "3"):
         n_players = int(input("How many initiative rolls (e.g. players + monsters)? "))
-        for _ in itertools.repeat(None, n_players):
-            print(random.randint(1, 20))
+        mod = int(input("How much is each modifier? "))
+        print('{}'.format(np.random.randint(1, high=21, size=n_players) + mod))
         start_fn()
     elif option == "4":
         encounter_fn()
