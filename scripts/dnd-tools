@@ -189,7 +189,7 @@ item_a = expand({
 
 item_b = expand({
     range(1, 15): "Potion of greater healing",
-    range(16, 22): "Potrange of keys in dictionaryion of fire breath",
+    range(16, 22): "Potion of fire breath",
     range(23, 29): "Potion of resistance",
     range(30, 34): "Ammunition, +1",
     range(35, 39): "Potion of animal friendship",
@@ -3755,7 +3755,7 @@ def skills_fn():
         skill_choice_fn()
     if char_class in ("Sorcerer", "sorcerer"):
         def skill_choice_fn():
-            x, y = input("Chose two from: Arcana, Deception, Insight, Intimation, Persuasion, Religion; separated by a space:  ").split()
+            x, y = input("Chose two from: Arcana, Deception, Insight, Intimidation, Persuasion, Religion; separated by a space:  ").split()
             if x not in ("Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"):
                 print("Invalid input, ", x)
                 skill_choice_fn()
