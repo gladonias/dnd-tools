@@ -791,6 +791,7 @@ abilities = [
 #############
 
 def start_fn():
+    """Display main menu and dispatch to selected tool."""
     print("")
     print("        What would you like to do?          ")
     print("        1) (C)reate Character / NPC         ")
@@ -871,6 +872,7 @@ def start_fn():
 
         
 def loot_cr1_fn():
+    """Generate treasure hoard for CR 0-4 encounters."""
     gem_n = 0
     gem_t = "0"
     item_loot = []
@@ -971,6 +973,7 @@ def loot_cr1_fn():
 
 
 def loot_cr5_fn():
+    """Generate treasure hoard for CR 5-10 encounters."""
     gem_n = 0
     gem_t = "0"
     item_loot = []
@@ -1114,6 +1117,7 @@ def loot_cr5_fn():
 
 
 def loot_cr11_fn():
+    """Generate treasure hoard for CR 11-16 encounters."""
     item_loot = []
     gem_t = "0"
     gem_n = 0
@@ -1348,6 +1352,7 @@ def loot_cr11_fn():
 
 
 def loot_cr17_fn():
+    """Generate treasure hoard for CR 17+ encounters."""
     item_loot = []
     gem_n = 0
     gem_t = "0"
@@ -1548,6 +1553,7 @@ def loot_cr17_fn():
 
 
 def loot_coins_fn():
+    """Generate random coin loot based on CR tier."""
     global cp
     global sp
     global ep
@@ -1738,6 +1744,7 @@ def loot_coins_fn():
 
 
 def loot_menu_fn():
+    """Display loot generation menu and dispatch by CR range."""
     print("")
     global cr
     global size
@@ -1762,6 +1769,7 @@ def loot_menu_fn():
 
 
 def encounter_fn():
+    """Calculate encounter difficulty and XP based on party and monster composition."""
     # player stats
     party_n = input_int("How many players? ")
     if party_n == 1:
@@ -2059,6 +2067,7 @@ def encounter_fn():
 
 
 def draw_cards_fn():
+    """Draw cards for Tarokka fortune telling (Curse of Strahd)."""
     global drawn_cards
     drawn_cards = random.sample(card_deck, 5)
 
@@ -2121,6 +2130,7 @@ def reveal_cards_fn():
 
 
 def wild_magic_fn():
+    """Roll on the Wild Magic Surge table for Wild Magic sorcerers."""
     global roll
     roll = random.randrange(1, 100)
     if roll in (1, 2):
@@ -2264,6 +2274,7 @@ def wild_magic_fn():
 
 
 def race_fn():
+    """Select or randomly assign character race."""
     global char_race
     print("Available Races Include:")
     print("  (R)andom")
@@ -2280,6 +2291,7 @@ def race_fn():
 
 
 def class_fn():
+    """Select or randomly assign character class (adventurer or NPC)."""
     def adv_npc_fn():
         adv_npc = input("Select (A)dventurer or (N)PC Class [A]: ")
         if adv_npc in ("A", "a", "Adventurer", "adventurer", ""):
@@ -2293,8 +2305,8 @@ def class_fn():
         global char_class
         print("Available Classes Include:")
         print("  (R)andom")
-        for char_class in class_desc:
-            print("  ", char_class)
+        for cls in class_desc:
+            print("  ", cls)
         char_class = input("Enter Your Class [R]: ")
         if char_class in ("R", "r", "Random", "random", ""):
             char_class = (random.choice(class_short))
@@ -2307,8 +2319,8 @@ def class_fn():
         global npc_class
         print("Available Classes Include:")
         print("  (R)andom")
-        for npc_class in class_npc:
-            print("  ", npc_class)
+        for cls in class_npc:
+            print("  ", cls)
         npc_class = input("Enter NPC Class [R] ")
         if npc_class in ("R", "r", "Random", "random", ""):
             npc_class = (random.choice(class_npc))
@@ -2483,6 +2495,7 @@ def name_fn():
 
 
 def abilities_fn():
+    """Roll and assign the six ability scores (STR, DEX, CON, INT, WIS, CHA)."""
     def stat_roll():
         d1 = random.randrange(1, 6)
         d2 = random.randrange(1, 6)
@@ -2611,6 +2624,7 @@ def abilities_fn():
 
 
 def race_bonus_fn():
+    """Apply racial ability score bonuses based on selected race."""
     global abl_str
     global abl_dex
     global abl_con
@@ -2673,6 +2687,7 @@ def race_bonus_fn():
 
 
 def modifiers_fn():
+    """Calculate ability modifiers, armor class, attack bonus, and primary stat."""
     global mod_str
     global mod_dex
     global mod_con
@@ -2811,6 +2826,7 @@ def modifiers_fn():
 
     
 def saves_fn():
+    """Calculate saving throw bonuses based on class proficiencies."""
     print("Calculating saving throw bonuses...")
     # proficiency bonus = 2 for starting characters
     global save_str
@@ -2870,6 +2886,7 @@ def saves_fn():
 
     
 def skills_fn():
+    """Set base skill values and apply race/class skill proficiency bonuses."""
     print("Some races, and all classes, have a set of skills they are proficient in.")
     global skill_athletics
     skill_athletics = mod_str
@@ -3417,6 +3434,7 @@ def skills_fn():
 
         
 def hp_fn():
+    """Calculate hit points from class hit die plus Constitution modifier."""
     global char_hp
     print("Now we need to calculate hit points.")
     if char_class == "Barbarian":
@@ -3438,6 +3456,7 @@ def hp_fn():
 
 
 def alignment_fn():
+    """Select or randomly assign character alignment (law/chaos + good/evil)."""
     global align_lawchaos
     global align_goodevil
     print("Finally choose alignment.")
