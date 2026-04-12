@@ -30,6 +30,12 @@ def input_int(prompt):
         except ValueError:
             print("Please enter a valid number.")
 
+
+def input_yn(prompt):
+    """Get yes/no input, returns True for yes, False for no. Default is yes."""
+    response = input(prompt).strip().lower()
+    return response in ("y", "yes", "")
+
 def roll_dice(num_dice, sides):
     """Roll num_dice dice with given number of sides and return the sum."""
     total = 0
@@ -796,8 +802,8 @@ def start_fn():
     print("        7) (W)ild Magic (Roll Effect)       ")
     print("        0) (Q)uit                           ")
     print("")
-    option = input("What would you like to do? ")
-    if option in ("C", "c", "1"):
+    option = input("What would you like to do? ").strip().lower()
+    if option in ("c", "1"):
         global char_name
         global plyr_name
         char_name = ""
@@ -834,31 +840,31 @@ def start_fn():
         name_fn()
         print("")
         save_fn()
-    elif option in ("R", "r", "2"):
+    elif option in ("r", "2"):
         dice = input_int("How many dice you wanna roll? ")
         sides = input_int("How many sides on each die? ")
         mod = input_int("How much is the total modifier? ")
         dice_array = np.random.randint(1, high=sides + 1, size=dice)
         print('{} + [{}] = {}'.format(dice_array, mod, sum(dice_array) + mod))
         start_fn()
-    elif option in ("I", "i", "3"):
+    elif option in ("i", "3"):
         n_players = input_int("How many initiative rolls (e.g. players + monsters)? ")
         mod = input_int("How much is each modifier? ")
         print('{}'.format(np.random.randint(1, high=21, size=n_players) + mod))
         start_fn()
-    elif option in ("X", "x", "4"):
+    elif option in ("x", "4"):
         encounter_fn()
         start_fn()
-    elif option in ("T", "t", "5"):
+    elif option in ("t", "5"):
         loot_menu_fn()
-    elif option in ("K", "k", "6"):
+    elif option in ("k", "6"):
         draw_cards_fn()
         reveal_cards_fn()
         start_fn()
-    elif option in ("W", "w", "7"):
+    elif option in ("w", "7"):
         wild_magic_fn()
         start_fn()
-    elif option in ("Q", "q", "0"):
+    elif option in ("q", "0"):
         quit()
     else:
         start_fn()
@@ -2361,18 +2367,14 @@ def height_fn():
         print(entry)
     print("Your race is", char_race)
     height_mod_fn()
-    rnd_height = input("Do you want a random height? [Y]: ")
-    if rnd_height in ("Y", "y", "Yes", "yes", ""):
+    if input_yn("Do you want a random height? [Y]: "):
         rnd_height_fn()
-    elif rnd_height in ("N", "n", "No", "no"):
+    else:
         height = input_int("Enter your height in total inches: ")
         global char_heightft
         global char_heightin
         char_heightft = int(height / 12)
         char_heightin = height % 12
-    else:
-        print(rnd_height, " is not a valid choice")
-        height_fn()
 
 
 def weight_fn():
@@ -2419,14 +2421,10 @@ def weight_fn():
     weight_mod_fn()
     global rnd_height
     global char_weight
-    rnd_weight = input("Do you want a random weight? [Y]: ")
-    if rnd_weight in ("Y", "y", "Yes", "yes", ""):
+    if input_yn("Do you want a random weight? [Y]: "):
         rnd_weight_fn()
-    elif rnd_weight in ("N", "n", "No", "no"):
-        char_weight = input_int("Enter your weight in pounds: ")
     else:
-        print(rnd_weight, " is not a valid choice")
-        weight_fn()
+        char_weight = input_int("Enter your weight in pounds: ")
 
 
 def age_fn():
@@ -2434,8 +2432,7 @@ def age_fn():
     for entry in avg_stats:
         print(entry)
     print("Your race is", char_race)
-    rnd_age = input("Do you want a random age? [Y]: ")
-    if rnd_age in ("Y", "y", "Yes", "yes", ""):
+    if input_yn("Do you want a random age? [Y]: "):
         if char_race in ("Dwarf", "Mountain Dwarf", "Hill Dwarf"):
             char_age = random.randrange(125, 350)
         if char_race in ("Elf", "Wood Elf", "High Elf", "Drow"):
@@ -2454,11 +2451,8 @@ def age_fn():
             char_age = random.randrange(30, 80)
         if char_race == "Tiefling":
             char_age = random.randrange(18, 100)
-    elif rnd_age in ("N", "n", "No", "no"):
-        char_age = input_int("Enter character age: ")
     else:
-        print("Not a valid choice")
-        age_fn()
+        char_age = input_int("Enter character age: ")
 
 
 def gender_fn():
@@ -2467,12 +2461,12 @@ def gender_fn():
     print("  (R)andom")
     print("  (M)ale")
     print("  (F)emale")
-    char_gender = input("Enter character gender [R]: ")
-    if char_gender in ("R", "r", "Random", "random", ""):
-        char_gender = random.choice("MF")
-    if char_gender in ("M", "m", "Male", "male"):
+    choice = input("Enter character gender [R]: ").strip().lower()
+    if choice in ("r", "random", ""):
+        char_gender = random.choice(["Male", "Female"])
+    elif choice in ("m", "male"):
         char_gender = "Male"
-    elif char_gender in ("F", "f", "Female", "female"):
+    elif choice in ("f", "female"):
         char_gender = "Female"
     else:
         print("Gender not available")
@@ -2560,8 +2554,7 @@ def abilities_fn():
             abl_scores.remove(abl_cha)
 
     def assign():
-        rnd_assign = input("Do you want to randomly assign stat rolls? [Y]: ")
-        if rnd_assign in ("Y", "y", "Yes", "yes", ""):
+        if input_yn("Do you want to randomly assign stat rolls? [Y]: "):
             random.shuffle(abl_scores)
             global abl_str
             global abl_dex
@@ -2580,16 +2573,13 @@ def abilities_fn():
             abl_wis = random.choice(abl_scores)
             abl_scores.remove(abl_wis)
             abl_cha = random.choice(abl_scores)
-        elif rnd_assign in ("N", "n", "No", "no"):
+        else:
             strength()
             dexterity()
             constitution()
             intelligence()
             wisdom()
             charisma()
-        else:
-            print("Invalid choice")
-            assign()
     print("Rolling random ability scores...")
     score1 = stat_roll()
     score2 = stat_roll()
@@ -3452,43 +3442,40 @@ def alignment_fn():
     global align_goodevil
     print("Finally choose alignment.")
     while True:
-        rnd_align = input("Do you want to use a random alignment? [Y]: ")
-        if rnd_align in ("Y", "y", "Yes", "yes", ""):
+        if input_yn("Do you want to use a random alignment? [Y]: "):
             goodevil_ls = ["Good", "Evil", "Neutral"]
             lawchaos_ls = ["Lawful", "Chaotic", "Neutral"]
             align_lawchaos = random.choice(lawchaos_ls)
             align_goodevil = random.choice(goodevil_ls)
             break
-        elif rnd_align in ("N", "n", "No", "no"):
+        else:
             while True:
-                align_lawchaos = input("Choose (L)awful, (C)haotic, or (N)eutral: ")
-                if align_lawchaos in ("L", "l", "Lawful", "lawful"):
+                choice = input("Choose (L)awful, (C)haotic, or (N)eutral: ").strip().lower()
+                if choice in ("l", "lawful"):
                     align_lawchaos = "Lawful"
                     break
-                elif align_lawchaos in ("C", "c", "Chaotic", "chaotic"):
+                elif choice in ("c", "chaotic"):
                     align_lawchaos = "Chaotic"
                     break
-                elif align_lawchaos in ("N", "n", "Neutral", "neutral"):
+                elif choice in ("n", "neutral"):
                     align_lawchaos = "Neutral"
                     break
                 else:
                     print("Invalid choice")
             while True:
-                align_goodevil = input("Choose (G)ood, (E)vil, or (N)eutral: ")
-                if align_goodevil in ("G", "g", "Good", "good"):
+                choice = input("Choose (G)ood, (E)vil, or (N)eutral: ").strip().lower()
+                if choice in ("g", "good"):
                     align_goodevil = "Good"
                     break
-                elif align_goodevil in ("E", "e", "Evil", "evil"):
+                elif choice in ("e", "evil"):
                     align_goodevil = "Evil"
                     break
-                elif align_goodevil in ("N", "n", "Neutral", "neutral"):
+                elif choice in ("n", "neutral"):
                     align_goodevil = "Neutral"
                     break
                 else:
                     print("Invalid choice")
             break
-        else:
-            print("Invalid choice")
     print("Your alignment is ", align_lawchaos, "-", align_goodevil)
 
     
@@ -3558,8 +3545,7 @@ def summary_fn(out=None):
 
 
 def save_fn():
-    save_opt = input("Do you want to save this character? [Y]: ")
-    if save_opt in ("Y", "y", "Yes", "yes", ""):
+    if input_yn("Do you want to save this character? [Y]: "):
         safe_name = "".join(c for c in char_name if c.isalnum() or c in (' ', '-', '_')).strip()
         if not safe_name:
             safe_name = "character"
