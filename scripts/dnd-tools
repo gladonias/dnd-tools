@@ -32,6 +32,26 @@ def input_int(prompt):
         except ValueError:
             print("Please enter a valid number.")
 
+def roll_dice(num_dice, sides):
+    """Roll num_dice dice with given number of sides and return the sum."""
+    total = 0
+    for _ in range(num_dice):
+        total += random.randint(1, sides)
+    return total
+
+def roll_gem(table):
+    """Pick a random entry from a gem/art table."""
+    return table[random.randint(1, len(table))]
+
+def roll_items(table, num_dice, sides):
+    """Roll for a number of items from a magic item table."""
+    items = []
+    count = roll_dice(num_dice, sides)
+    for _ in range(count):
+        key = random.choice(list(table))
+        items.append(table[key])
+    return items
+
 
 ##########################
 # Lists and Dictionaries #
@@ -854,89 +874,36 @@ def loot_cr1_fn():
     if d100 <= 6:
         pass
     elif 6 < d100 <= 16:
-        roll = random.randint(1, 12)
-        gem_t = gem_10[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_10)
+        gem_n = roll_dice(2, 6)
     elif 16 < d100 <= 26:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
     elif 26 < d100 <= 36:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
     elif 36 < d100 <= 44:
-        roll = random.randint(1, 12)
-        gem_t = gem_10[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for n in range(item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_10)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 44 < d100 <= 52:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for n in range(item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 52 < d100 <= 60:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for n in range(item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 60 < d100 <= 65:
-        roll = random.randint(1, 12)
-        gem_t = gem_10[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_10)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_a, 1, 4))
     elif 65 < d100 <= 70:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_b, 1, 4))
     elif 70 < d100 <= 75:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
+        gem_t = roll_gem(gem_50)
         gem_n = 0
         for dice in range(2):
             rolls = random.randint(1, 6)
@@ -947,72 +914,28 @@ def loot_cr1_fn():
             item = item_b[item]
             item_loot.append(item)
     elif 75 < d100 <= 78:
-        roll = random.randint(1, 12)
-        gem_t = gem_10[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_10)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 78 < d100 <= 80:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for n in range(item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_c, 1, 6))
     elif 80 < d100 <= 85:
-        roll = random.randint(1, 10)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 85 < d100 <= 92:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 92 < d100 <= 97:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for n in range(item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 97 < d100 <= 99:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
         choice = random.randint(1, 100)
         if choice in (12, 13, 14):
             roll = random.randint(1, 8)
@@ -1023,12 +946,8 @@ def loot_cr1_fn():
             item = item_g[item]
             item_loot.append(item)
     elif d100 > 99:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
         choice = random.randint(1, 100)
         if choice in (12, 13, 14):
             roll = random.randint(1, 8)
@@ -1053,259 +972,113 @@ def loot_cr5_fn():
     item_loot = []
     d100 = random.randint(1, 100)
     if d100 <= 4:
-        roll = random.randint(1, 10)
-        gem_t = art_25[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
     elif 4 < d100 <= 10:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 4)
     elif 10 < d100 <= 16:
-        roll = random.randint(1, 12)
-        gem_t = gem_50[roll]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(3, 6)
     elif 16 < d100 <= 22:
-        roll = random.randint(1, 10)
-        gem_t = gem_100[roll]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
     elif 22 < d100 <= 28:
-        gem_t = art_250[random.randint(1, 12)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
     elif 28 < d100 <= 32:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 32 < d100 <= 36:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 36 < d100 <= 40:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 40 < d100 <= 44:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_a, 1, 6))
     elif 44 < d100 <= 49:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_b, 1, 4))
     elif 49 < d100 <= 54:
-        gem_t = gem_50[random.randint(1, 12)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(2, 6)
+        item_loot.extend(roll_items(item_b, 1, 4))
     elif 54 < d100 <= 59:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_b, 1, 4))
     elif 59 < d100 <= 63:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_b, 1, 4))
     elif 63 < d100 <= 66:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 63 < d100 <= 69:
-        gem_t = gem_50[random.randint(1, 12)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 69 < d100 <= 72:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 72 < d100 <= 74:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_c, 1, 4))
     elif 74 < d100 <= 76:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_d))
         item = item_d[item]
         item_loot.append(item)
     elif 76 < d100 <= 78:
-        gem_t = gem_50[random.randint(1, 12)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_d))
         item = item_d[item]
         item_loot.append(item)
     elif d100 == 79:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_d))
         item = item_d[item]
         item_loot.append(item)
     elif d100 == 80:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_d))
         item = item_d[item]
         item_loot.append(item)
     elif 80 < d100 <= 84:
-        gem_t = art_25[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_25)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 84 < d100 <= 88:
-        gem_t = gem_50[random.randint(1, 12)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_50)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 88 < d100 <= 91:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 91 < d100 <= 94:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_f))
-            item = item_f[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_f, 1, 4))
     elif 94 < d100 <= 96:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1316,20 +1089,14 @@ def loot_cr5_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif d100 == 99:
-        gem_t = gem_100[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_100)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_h))
         item = item_h[item]
         item_loot.append(item)
     elif d100 == 100:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_h))
         item = item_h[item]
         item_loot.append(item)
@@ -1348,223 +1115,104 @@ def loot_cr11_fn():
     gem_n = 0
     d100 = random.randint(1, 100)
     if d100 <= 3:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
     elif 3 < d100 <= 6:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
     elif 6 < d100 <= 9:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
     elif 9 < d100 <= 12:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
     elif 12 < d100 <= 15:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
     elif 15 < d100 <= 19:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_a, 1, 4))
+        item_loot.extend(roll_items(item_b, 1, 6))
     elif 19 < d100 <= 23:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_b, 1, 4))
+        item_loot.extend(roll_items(item_b, 1, 6))
     elif 23 < d100 <= 26:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_a, 1, 4))
         item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             item = random.choice(list(item))
             item = item_b[item]
             item_loot.append(item)
     elif 26 < d100 <= 29:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_a))
-            item = item_a[item]
-            item_loot.append(item)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_b))
-            item = item_b[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_a, 1, 4))
+        item_loot.extend(roll_items(item_b, 1, 6))
     elif 29 < d100 <= 35:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_c, 1, 6))
     elif 35 < d100 <= 40:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_c, 1, 6))
     elif 40 < d100 <= 45:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_c, 1, 6))
     elif 45 < d100 <= 54:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_d, 1, 4))
     elif 54 < d100 <= 58:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_d, 1, 4))
     elif 58 < d100 <= 62:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_d, 1, 4))
     elif 62 < d100 <= 66:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_d, 1, 4))
     elif 66 < d100 <= 68:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_e))
         item = item_e[item]
         item_loot.append(item)
     elif 68 < d100 <= 70:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_e))
         item = item_e[item]
         item_loot.append(item)
     elif 70 < d100 <= 72:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_e))
         item = item_e[item]
         item_loot.append(item)
     elif 72 < d100 <= 74:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_e))
         item = item_e[item]
         item_loot.append(item)
     elif 74 < d100 <= 76:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_f))
         item = item_f[item]
         item_loot.append(item)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1575,16 +1223,13 @@ def loot_cr11_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif 76 < d100 <= 78:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_f))
         item = item_f[item]
         item_loot.append(item)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1595,16 +1240,13 @@ def loot_cr11_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif 78 < d100 <= 80:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_f))
         item = item_f[item]
         item_loot.append(item)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1615,16 +1257,13 @@ def loot_cr11_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif 80 < d100 <= 82:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         item = random.choice(list(item_f))
         item = item_f[item]
         item_loot.append(item)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1635,51 +1274,23 @@ def loot_cr11_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif 82 < d100 <= 85:
-        gem_t = art_250[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 5)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_250)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_h, 1, 5))
     elif 85 < d100 <= 88:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 88 < d100 <= 90:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 90 < d100 <= 92:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 92 < d100 <= 94:
-        gem_t = art_250[random.randint(1, 10)]
+        gem_t = roll_gem(art_250)
         gem_n = 0
         for dice in range(2):
             rolls = random.randint(1, 4)
@@ -1694,20 +1305,14 @@ def loot_cr11_fn():
                 item = item_i[item]
                 item_loot.append(item)
     elif 94 < d100 <= 96:
-        gem_t = art_750[random.randint(1, 10)]
-        gem_n = 0
-        for dice in range(2):
-            rolls = random.randint(1, 4)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(art_750)
+        gem_n = roll_dice(2, 4)
         item = random.choice(list(item_i))
         item = item_i[item]
         item_loot.append(item)
     elif 96 < d100 <= 98:
-        gem_t = gem_500[random.randint(1, 6)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_500)
+        gem_n = roll_dice(3, 6)
         choice = random.randint(1, 100)
         if choice == 76:
             item = random.choice(list(item_i_76))
@@ -1718,11 +1323,8 @@ def loot_cr11_fn():
             item = item_i[item]
             item_loot.append(item)
     elif 98 < d100:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         choice = random.randint(1, 100)
         if choice == 76:
             item = random.choice(list(item_i_76))
@@ -1749,118 +1351,66 @@ def loot_cr17_fn():
     if d100 <= 2:
         pass
     elif 2 < d100 <= 5:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 8)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_c, 1, 8))
     elif 5 < d100 <= 8:
         gem_t = art_2500[random.randint(1, 1)]
         gem_n = random.randint(1, 10)
-        item_n = random.randint(1, 8)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_c, 1, 8))
     elif 8 < d100 <= 11:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
-        item_n = random.randint(1, 8)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_c, 1, 8))
     elif 11 < d100 <= 14:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 4)
-        item_n = random.randint(1, 8)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_c))
-            item = item_c[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_c, 1, 8))
     elif 14 < d100 <= 22:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_d, 1, 6))
     elif 22 < d100 <= 30:
-        gem_t = art_2500[random.randint(1, 10)]
+        gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_d, 1, 6))
     elif 30 < d100 <= 38:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_d, 1, 6))
     elif 38 < d100 <= 46:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 8)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_d))
-            item = item_d[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_d, 1, 6))
     elif 46 < d100 <= 52:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             item = random.choice(list(item_e))
             item = item_d[item]
             item_loot.append(item)
     elif 52 < d100 <= 58:
-        gem_t = art_2500[random.randint(1, 10)]
+        gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
         item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             item = random.choice(list(item_e))
             item = item_d[item]
             item_loot.append(item)
     elif 58 < d100 <= 63:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_e))
-            item = item_e[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_e, 1, 6))
     elif 63 < d100 <= 68:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 8)
-        item_n = random.randint(1, 6)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_e))
-            item = item_e[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_e, 1, 6))
     elif d100 == 69:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1871,10 +1421,10 @@ def loot_cr17_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif d100 == 70:
-        gem_t = art_2500[random.randint(1, 10)]
+        gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1885,10 +1435,10 @@ def loot_cr17_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif d100 == 71:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1899,10 +1449,10 @@ def loot_cr17_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif d100 == 72:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 8)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice in (12, 13, 14):
                 item = random.choice(list(item_g_12))
@@ -1913,48 +1463,26 @@ def loot_cr17_fn():
                 item = item_g[item]
                 item_loot.append(item)
     elif 72 < d100 <= 74:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 74 < d100 <= 76:
-        gem_t = art_2500[random.randint(1, 10)]
+        gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 76 < d100 <= 78:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 78 < d100 <= 80:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 8)
-        item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
-            item = random.choice(list(item_h))
-            item = item_h[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_h, 1, 4))
     elif 80 < d100 <= 85:
-        gem_t = gem_1000[random.randint(1, 8)]
-        gem_n = 0
-        for dice in range(3):
-            rolls = random.randint(1, 6)
-            gem_n = gem_n + rolls
+        gem_t = roll_gem(gem_1000)
+        gem_n = roll_dice(3, 6)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice == 76:
                 item = random.choice(list(item_i_76))
@@ -1965,10 +1493,10 @@ def loot_cr17_fn():
                 item = item_i[item]
                 item_loot.append(item)
     elif 85 < d100 <= 90:
-        gem_t = art_2500[random.randint(1, 10)]
+        gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice == 76:
                 item = random.choice(list(item_i_76))
@@ -1979,10 +1507,10 @@ def loot_cr17_fn():
                 item = item_i[item]
                 item_loot.append(item)
     elif 90 < d100 <= 95:
-        gem_t = art_7500[random.randint(1, 8)]
+        gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice == 76:
                 item = random.choice(list(item_i_76))
@@ -1993,10 +1521,10 @@ def loot_cr17_fn():
                 item = item_i[item]
                 item_loot.append(item)
     elif 95 < d100:
-        gem_t = gem_5000[random.randint(1, 4)]
+        gem_t = roll_gem(gem_5000)
         gem_n = random.randint(1, 8)
         item_n = random.randint(1, 4)
-        for _ in itertools.repeat(None, item_n):
+        for _ in range(item_n):
             choice = random.randint(1, 100)
             if choice == 76:
                 item = random.choice(list(item_i_76))
