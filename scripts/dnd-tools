@@ -20,12 +20,17 @@ except NotImplementedError:
     warnings.warn("A secure pseudo-random number generator is not available "
                   "on your system. Falling back to Mersenne Twister.")
 
-# Python 2 compatibility
-try:
-    range = xrange
-    input = raw_input
-except NameError:
-    pass
+
+######################
+# Utility Functions  #
+######################
+
+def input_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter a valid number.")
 
 
 ##########################
@@ -812,15 +817,15 @@ def start_fn():
         print("")
         save_fn()
     elif option in ("R", "r", "2"):
-        dice = int(input("How many dice you wanna roll? "))
-        sides = int(input("How many sides on each die? "))
-        mod = int(input("How much is the total modifier? "))
+        dice = input_int("How many dice you wanna roll? ")
+        sides = input_int("How many sides on each die? ")
+        mod = input_int("How much is the total modifier? ")
         dice_array = np.random.randint(1, high=sides + 1, size=dice)
         print('{} + [{}] = {}'.format(dice_array, mod, sum(dice_array) + mod))
         start_fn()
     elif option in ("I", "i", "3"):
-        n_players = int(input("How many initiative rolls (e.g. players + monsters)? "))
-        mod = int(input("How much is each modifier? "))
+        n_players = input_int("How many initiative rolls (e.g. players + monsters)? ")
+        mod = input_int("How much is each modifier? ")
         print('{}'.format(np.random.randint(1, high=21, size=n_players) + mod))
         start_fn()
     elif option in ("X", "x", "4"):
@@ -2226,20 +2231,20 @@ def loot_menu_fn():
 
 def encounter_fn():
     # player stats
-    party_n = int(input("How many players? "))
+    party_n = input_int("How many players? ")
     if party_n == 1:
-        party_lvl = int(input("Enter character level: "))
+        party_lvl = input_int("Enter character level: ")
     elif party_n in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20):
-        party_lvl = int(input("Enter party level SUM: "))
+        party_lvl = input_int("Enter party level SUM: ")
         party_lvl = party_lvl // party_n
     else:
         encounter_fn()
     # monster stats
-    mnstr_n = int(input("How many monsters? "))
+    mnstr_n = input_int("How many monsters? ")
     if mnstr_n == 1:
-        mnstr_cr = int(input("Enter monster CR: "))
+        mnstr_cr = input_int("Enter monster CR: ")
     else:
-        mnstr_cr = int(input("Enter monster CR SUM: "))
+        mnstr_cr = input_int("Enter monster CR SUM: ")
         mnstr_cr = mnstr_cr // mnstr_n
     # party size multipliers
     if party_n in (1, 2):
@@ -2838,7 +2843,7 @@ def height_fn():
     if rnd_height in ("Y", "y", "Yes", "yes", ""):
         rnd_height_fn()
     elif rnd_height in ("N", "n", "No", "no"):
-        height = int(input("Enter your height in total inches: "))
+        height = input_int("Enter your height in total inches: ")
         global char_heightft
         global char_heightin
         char_heightft = math.trunc(height / 12)
@@ -2896,7 +2901,7 @@ def weight_fn():
     if rnd_weight in ("Y", "y", "Yes", "yes", ""):
         rnd_weight_fn()
     elif rnd_weight in ("N", "n", "No", "no"):
-        char_weight = int(input("Enter your weight in pounds: "))
+        char_weight = input_int("Enter your weight in pounds: ")
     else:
         print(rnd_weight, " is not a valid choice")
         weight_fn()
@@ -2928,7 +2933,7 @@ def age_fn():
         if char_race == "Tiefling":
             char_age = random.randrange(18, 100)
     elif rnd_age in ("N", "n", "No", "no"):
-        char_age = int(input("Enter character age: "))
+        char_age = input_int("Enter character age: ")
     else:
         print("Not a valid choice")
         age_fn()
@@ -2975,7 +2980,7 @@ def abilities_fn():
 
     def strength():
         global abl_str
-        abl_str = int(input("Enter the score to use for Strength: "))
+        abl_str = input_int("Enter the score to use for Strength: ")
         if abl_str not in abl_scores:
             print("Score not valid")
             strength()
@@ -2985,7 +2990,7 @@ def abilities_fn():
     def dexterity():
         print("Remaining Scores: ", abl_scores)
         global abl_dex
-        abl_dex = int(input("Enter the score to use for Dexterity: "))
+        abl_dex = input_int("Enter the score to use for Dexterity: ")
         if abl_dex not in abl_scores:
             print("Score not valid")
             dexterity()
@@ -2995,7 +3000,7 @@ def abilities_fn():
     def constitution():
         print("Remaining Scores: ", abl_scores)
         global abl_con
-        abl_con = int(input("Enter the score to use for Constitution: "))
+        abl_con = input_int("Enter the score to use for Constitution: ")
         if abl_con not in abl_scores:
             print("Score not valid")
             constitution()
@@ -3005,7 +3010,7 @@ def abilities_fn():
     def intelligence():
         print("Remaining Scores: ", abl_scores)
         global abl_int
-        abl_int = int(input("Enter the score to use for Intelligence: "))
+        abl_int = input_int("Enter the score to use for Intelligence: ")
         if abl_int not in abl_scores:
             print("Score not valid")
             intelligence()
@@ -3015,7 +3020,7 @@ def abilities_fn():
     def wisdom():
         print("Remaining Scores: ", abl_scores)
         global abl_wis
-        abl_wis = int(input("Enter the score to use for Wisdom: "))
+        abl_wis = input_int("Enter the score to use for Wisdom: ")
         if abl_wis not in abl_scores:
             print("Score not valid")
             wisdom()
@@ -3025,7 +3030,7 @@ def abilities_fn():
     def charisma():
         print("Remaining Scores: ", abl_scores)
         global abl_cha
-        abl_cha = int(input("Enter the score to use for Charisma: "))
+        abl_cha = input_int("Enter the score to use for Charisma: ")
         if abl_cha not in abl_scores:
             print("Score not valid")
             charisma()
