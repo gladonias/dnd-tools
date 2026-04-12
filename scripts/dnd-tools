@@ -7,9 +7,7 @@ from __future__ import print_function, division
 ###########
 
 import sys
-import math
 import random
-import itertools
 import numpy as np
 
 try:
@@ -2234,18 +2232,14 @@ def wild_magic_fn():
         roll_5_fn()
         print("You regain ", roll_5, " hit points")
     elif roll in (53, 54):
-        def roll_6_fn():
-            global days_n
-            for _ in itertools.repeat(None, 5):
-                days_n = random.randrange(1, 6)
-        roll_6_fn()
+        days_n = 0
+        for _ in range(5):
+            days_n = random.randrange(1, 6)
         print("You are immune to being intoxicated by alcohol for the next ", days_n, " days")
     elif roll in (65, 66):
-        def roll_7_fn():
-            global damage
-            for _ in itertools.repeat(None, 4):
-                damage = random.randint(1, 10)
-        roll_7_fn()
+        damage = 0
+        for _ in range(4):
+            damage = random.randint(1, 10)
         print("Up to three creatures you choose within 30 feet of you take ", damage, " lightning damage")
     elif roll in (73, 74):
         def roll_8_fn():
@@ -2359,7 +2353,7 @@ def height_fn():
             pass
         global char_heightft
         global char_heightin
-        char_heightft = math.trunc(height / 12)
+        char_heightft = int(height / 12)
         char_heightin = height % 12
 
     print("Select Character Height:")
@@ -2374,7 +2368,7 @@ def height_fn():
         height = input_int("Enter your height in total inches: ")
         global char_heightft
         global char_heightin
-        char_heightft = math.trunc(height / 12)
+        char_heightft = int(height / 12)
         char_heightin = height % 12
     else:
         print(rnd_height, " is not a valid choice")
