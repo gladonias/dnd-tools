@@ -832,7 +832,7 @@ def start_fn():
         draw_cards_fn()
         reveal_cards_fn()
         start_fn()
-    elif option in ("W", "w", "7")
+    elif option in ("W", "w", "7"):
         wild_magic_fn()
         start_fn()
     elif option in ("Q", "q", "0"):
@@ -3414,41 +3414,42 @@ def skills_fn():
             elif x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Athletics":
+            choices = (x, y)
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            elif x or y == "Acrobatics":
+            if "Acrobatics" in choices:
                 skill_acrobatics = mod_dex + 2
-            elif x or y == "Sleight":
+            if "Sleight" in choices:
                 skill_sleight = mod_dex + 2
-            elif x or y == "Stealth":
+            if "Stealth" in choices:
                 skill_stealth = mod_dex + 2
-            elif x or y == "Arcana":
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            elif x or y == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            elif x or y == "Investigation":
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            elif x or y == "Nature":
+            if "Nature" in choices:
                 skill_nature = mod_wis + 2
-            elif x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_wis + 2
-            elif x or y == "Animal":
+            if "Animal" in choices:
                 skill_animal = mod_wis + 2
-            elif x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            elif x or y == "Medicine":
+            if "Medicine" in choices:
                 skill_medicine = mod_wis + 2
-            elif x or y == "Perception":
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            elif x or y == "Survival":
+            if "Survival" in choices:
                 skill_survival = mod_wis + 2
-            elif x or y == "Deception":
+            if "Deception" in choices:
                 skill_deception = mod_cha + 2
-            elif x or y == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            elif x or y == "Performance":
+            if "Performance" in choices:
                 skill_performance = mod_cha + 2
-            elif x or y == "Persuasion":
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
         skill_choice_fn()
     print("   Checking for class bonus...")
@@ -3470,41 +3471,42 @@ def skills_fn():
             if y in (x, z):
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y or z == "Athletics":
+            choices = (x, y, z)
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y or z == "Acrobatics":
+            if "Acrobatics" in choices:
                 skill_acrobatics = mod_dex + 2
-            if x or y or z == "Sleight":
+            if "Sleight" in choices:
                 skill_sleight = mod_dex + 2
-            if x or y or z == "Stealth":
+            if "Stealth" in choices:
                 skill_stealth = mod_dex + 2
-            if x or y or z == "Arcana":
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            if x or y or z == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y or z == "Investigation":
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            if x or y or z == "Nature":
+            if "Nature" in choices:
                 skill_nature = mod_int + 2
-            if x or y or z == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
-            if x or y or z == "Animal":
-                skill_religion = mod_wis + 2
-            if x or y or z == "Insight":
+            if "Animal" in choices:
+                skill_animal = mod_wis + 2
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y or z == "Medicine":
+            if "Medicine" in choices:
                 skill_medicine = mod_wis + 2
-            if x or y or z == "Perception":
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            if x or y or z == "Survival":
+            if "Survival" in choices:
                 skill_survival = mod_wis + 2
-            if x or y or z == "Deception":
+            if "Deception" in choices:
                 skill_deception = mod_cha + 2
-            if x or y or z == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y or z == "Performance":
+            if "Performance" in choices:
                 skill_performance = mod_cha + 2
-            if x or y or z == "Persuasion":
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
         skill_choice_fn()
     if char_class in ("Barbarian", "barbarian"):
@@ -3519,17 +3521,18 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Animal":
+            choices = (x, y)
+            if "Animal" in choices:
                 skill_animal = mod_wis + 2
-            if x or y == "Athletics":
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y in "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y in "Nature":
+            if "Nature" in choices:
                 skill_nature = mod_wis + 2
-            if x or y in "Perception":
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            if x or y in "Survival":
+            if "Survival" in choices:
                 skill_survival = mod_wis + 2
         skill_choice_fn()
     if char_class in ("Cleric", "cleric"):
@@ -3544,15 +3547,16 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "History":
+            choices = (x, y)
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Medicine":
-                skill_insight = mod_wis + 2
-            if x or y == "Persuasion":
+            if "Medicine" in choices:
+                skill_medicine = mod_wis + 2
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
         skill_choice_fn()
     if char_class in ("Druid", "druid"):
@@ -3567,19 +3571,20 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Arcana":
+            choices = (x, y)
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Medicine":
+            if "Medicine" in choices:
                 skill_medicine = mod_wis + 2
-            if x or y == "Nature":
+            if "Nature" in choices:
                 skill_nature = mod_int + 2
-            if x or y == "Perception":
-                skill_peception = mod_wis + 2
-            if x or y == "Religion":
+            if "Perception" in choices:
+                skill_perception = mod_wis + 2
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
-            if x or y == "Survival":
+            if "Survival" in choices:
                 skill_survival = mod_wis + 2
         skill_choice_fn()
     if char_class in ("Fighter", "fighter"):
@@ -3594,21 +3599,22 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Acrobatics":
+            choices = (x, y)
+            if "Acrobatics" in choices:
                 skill_acrobatics = mod_dex + 2
-            if x or y == "Animal":
+            if "Animal" in choices:
                 skill_animal = mod_wis + 2
-            if x or y == "Athletics":
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y == "Perception":
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            if x or y == "Survival":
+            if "Survival" in choices:
                 skill_survival = mod_wis + 2
         skill_choice_fn()
     if char_class in ("Monk", "monk"):
@@ -3623,17 +3629,18 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Acrobatics":
+            choices = (x, y)
+            if "Acrobatics" in choices:
                 skill_acrobatics = mod_dex + 2
-            if x or y == "Athletics":
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
-            if x or y == "Stealth":
+            if "Stealth" in choices:
                 skill_stealth = mod_dex + 2
         skill_choice_fn()
     if char_class in ("Paladin", "paladin"):
@@ -3648,17 +3655,18 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Athletics":
+            choices = (x, y)
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y == "Medicine":
+            if "Medicine" in choices:
                 skill_medicine = mod_wis + 2
-            if x or y == "Persuasion":
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
         skill_choice_fn()
     if char_class in ("Ranger", "ranger"):
@@ -3679,22 +3687,23 @@ def skills_fn():
             if y in (x, z):
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y or z == "Animal":
+            choices = (x, y, z)
+            if "Animal" in choices:
                 skill_animal = mod_wis + 2
-            if x or y or z == "Athletics":
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if x or y or z == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y or z == "Investigation":
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            if x or y or z == "Nature":
-                skill_nature = skill_nature + 2
-            if x or y or z == "Perception":
+            if "Nature" in choices:
+                skill_nature = mod_int + 2
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            if x or y or z == "Stealth":
+            if "Stealth" in choices:
                 skill_stealth = mod_dex + 2
-            if x or y or z == "Survival":
-                skill_surviavl = mod_wis + 2
+            if "Survival" in choices:
+                skill_survival = mod_wis + 2
         skill_choice_fn()
     if char_class in ("Rogue", "rogue"):
         def skill_choice_fn():
@@ -3720,27 +3729,28 @@ def skills_fn():
             if c in (a, b, d):
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if a or b or c or d == "Acrobatics":
+            choices = (a, b, c, d)
+            if "Acrobatics" in choices:
                 skill_acrobatics = mod_dex + 2
-            if a or b or c or d == "Athletics":
+            if "Athletics" in choices:
                 skill_athletics = mod_str + 2
-            if a or b or c or d == "Deception":
+            if "Deception" in choices:
                 skill_deception = mod_cha + 2
-            if a or b or c or d == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if a or b or c or d == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if a or b or c or d == "Investigation":
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            if a or b or c or d == "Perception":
+            if "Perception" in choices:
                 skill_perception = mod_wis + 2
-            if a or b or c or d == "Performance":
+            if "Performance" in choices:
                 skill_performance = mod_cha + 2
-            if a or b or c or d == "Persuasion":
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
-            if a or b or c or d == "Sleight":
-                skill_slieght = mod_dex + 2
-            if a or b or c or d == "Stealth":
+            if "Sleight" in choices:
+                skill_sleight = mod_dex + 2
+            if "Stealth" in choices:
                 skill_stealth = mod_dex + 2
         skill_choice_fn()
     if char_class in ("Sorcerer", "sorcerer"):
@@ -3755,17 +3765,18 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Arcana":
+            choices = (x, y)
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            if x or y == "Deception":
+            if "Deception" in choices:
                 skill_deception = mod_cha + 2
-            if x or y == "Insight":
+            if "Insight" in choices:
                 skill_insight = mod_wis + 2
-            if x or y == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y == "Persuasion":
+            if "Persuasion" in choices:
                 skill_persuasion = mod_cha + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
         skill_choice_fn()
     if char_class in ("Warlock", "warlock"):
@@ -3780,19 +3791,20 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Arcana":
+            choices = (x, y)
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            if x or y == "Deception":
+            if "Deception" in choices:
                 skill_deception = mod_cha + 2
-            if x or y == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y == "Intimidation":
+            if "Intimidation" in choices:
                 skill_intimidation = mod_cha + 2
-            if x or y == "Investigation":
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            if x or y == "Nature":
+            if "Nature" in choices:
                 skill_nature = mod_int + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
         skill_choice_fn()
     if char_class in ("Wizard", "wizard"):
@@ -3807,17 +3819,18 @@ def skills_fn():
             if x == y:
                 print("You cannot make the same selection twice.")
                 skill_choice_fn()
-            if x or y == "Arcana":
+            choices = (x, y)
+            if "Arcana" in choices:
                 skill_arcana = mod_int + 2
-            if x or y == "History":
+            if "History" in choices:
                 skill_history = mod_int + 2
-            if x or y == "Insight":
-                skill_insight = mod_int + 2
-            if x or y == "Investigation":
+            if "Insight" in choices:
+                skill_insight = mod_wis + 2
+            if "Investigation" in choices:
                 skill_investigation = mod_int + 2
-            if x or y == "Medicine":
+            if "Medicine" in choices:
                 skill_medicine = mod_wis + 2
-            if x or y == "Religion":
+            if "Religion" in choices:
                 skill_religion = mod_int + 2
         skill_choice_fn()
 
