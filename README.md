@@ -2,7 +2,7 @@
 
 **dnd-tools** is a set of interactive command line tools for Dungeons and Dragons 5th Edition.
 
-The original repository contains the source code for the python scripts and install functions used to create the [dnd-tools AUR package](https://aur.archlinux.org/packages/dnd-tools/).
+This repository is a fork of [savagezen/dnd-tools](https://github.com/savagezen/dnd-tools).
 
 The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to create an offline, cross-platform, GM/DM tool set.
 
@@ -25,34 +25,56 @@ The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to crea
 
 #### Installation / Usage:
 
-**Arch-based distros**:
-~~~
-yay -S dnd-tools
-~~~
-- Or, see [Arch Wiki for Installing AUR Packages](https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages)
-- [Download snapshot from AUR](https://aur.archlinux.org/packages/dnd-tools/)
-
-**Other Linux**:
-~~~
-$ git clone https://github.com/gtbjj/dnd-tools
+**From source (any platform with Python 3):**
+```
+$ git clone <this-repo-url>
 $ cd dnd-tools
-$ sudo python setup.py install
-$ /usr/bin/dnd-tools
-~~~
+$ pip install numpy
+$ python setup.py install
+$ dnd-tools
+```
 
-**Windows:**
+Or run directly:
+```
+$ python scripts/dnd-tools
+```
 
-- Install [Python for Windows](https://www.python.org/downloads/windows/)
-- Copy and paste [the raw script](https://raw.githubusercontent.com/gtbjj/dnd-tools/master/scripts/dnd-tools) to a text editor
-- Save the script as ```dnd-tools.py```
-- [Execute script in terminal with Python](http://pythoncentral.io/execute-python-script-file-shell/)
+**Arch-based distros** (original AUR package):
+```
+yay -S dnd-tools
+```
 
 ---
-**To Do / Feature Requests:**
-If you would like a feature added, first check [issues tagged as enhancements](https://github.com/savagezen/dnd-tools/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).  If you do not see the feature you are looking for, follow the [issue template for feature requests](https://github.com/savagezen/dnd-tools/blob/master/feature_request.md).
+
+#### Changelog (v0.2.0):
+
+**Critical bug fixes:**
+- Fixed SyntaxError (missing colon) that prevented the script from running
+- Fixed broken boolean logic in all skill proficiency assignments across 13 class/race sections (`if x or y == "value"` was always true)
+- Fixed garbled loot table entry ("Potrange of keys in dictionaryion of fire breath" -> "Potion of fire breath")
+- Fixed multiple variable name typos in skill assignments (skill_peception, skill_surviavl, skill_slieght, etc.)
+- Fixed Cleric Medicine skill setting wrong variable (skill_insight instead of skill_medicine)
+- Fixed Bard Animal Handling setting skill_religion instead of skill_animal
+- Fixed Wizard Insight using wrong modifier (mod_int instead of mod_wis)
+
+**High priority fixes:**
+- Replaced unsafe stdout redirection for character save with proper file I/O and path sanitization
+- Added input validation for all integer inputs (no more crashes on non-numeric input)
+- Replaced recursive input validation with while loops to prevent stack overflow
+- Fixed "Intimation" typo to "Intimidation" in Sorcerer skill prompt
+
+**Code quality improvements:**
+- Removed Python 2 compatibility shim (xrange/raw_input)
+- Extracted roll_dice(), roll_gem(), roll_items() helpers to reduce loot function duplication (~745 lines reduced to ~273)
+- Removed unnecessary math and itertools imports
+- Normalized input case handling with .lower() and input_yn() helper
+- Added docstrings to all major functions
+- Fixed loop variable shadowing global char_class
+
+---
 
 **Bugs:**
-Please review [issues tagged as bugs](https://github.com/savagezen/dnd-tools/labels/bug) before making a new issue report.  Be as clear and descriptive as possible when making bug reports, including output logs and what steps you've attempted to remedy the problem yourself.
+Please review existing issues before making a new issue report. Be as clear and descriptive as possible when making bug reports, including output logs and what steps you've attempted to remedy the problem yourself.
 
 **Contributing:**
-See [CONTRIBUTING.md](https://github.com/savagezen/dnd-tools/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md).
