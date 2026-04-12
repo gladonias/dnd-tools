@@ -3407,437 +3407,501 @@ def skills_fn():
         skill_intimidation = mod_cha + 2
     if char_race in ("Half-Elf", "half-elf"):
         print("   Your ", char_race, " race gives you a choice of skill proficiency.")
-        
-        def skill_choice_fn():
-            x, y = input("Chose two from: Athletics, Acrobatics, Sleight (of hand), Stealth, Arcana, History, Investigation, Nature, Religion, Animal (handling), Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion, or Random; separated by a space:  ").split()
-            if x not in ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion", "Random", "random", "R", "r"):
+        valid_options = ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion", "Random", "random", "R", "r")
+        while True:
+            try:
+                x, y = input("Chose two from: Athletics, Acrobatics, Sleight (of hand), Stealth, Arcana, History, Investigation, Nature, Religion, Animal (handling), Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion, or Random; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion", "Random", "random", "R", "r"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
-            elif x == y:
+                continue
+            if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Acrobatics" in choices:
-                skill_acrobatics = mod_dex + 2
-            if "Sleight" in choices:
-                skill_sleight = mod_dex + 2
-            if "Stealth" in choices:
-                skill_stealth = mod_dex + 2
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Nature" in choices:
-                skill_nature = mod_wis + 2
-            if "Religion" in choices:
-                skill_religion = mod_wis + 2
-            if "Animal" in choices:
-                skill_animal = mod_wis + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-            if "Deception" in choices:
-                skill_deception = mod_cha + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Performance" in choices:
-                skill_performance = mod_cha + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Acrobatics" in choices:
+            skill_acrobatics = mod_dex + 2
+        if "Sleight" in choices:
+            skill_sleight = mod_dex + 2
+        if "Stealth" in choices:
+            skill_stealth = mod_dex + 2
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Nature" in choices:
+            skill_nature = mod_wis + 2
+        if "Religion" in choices:
+            skill_religion = mod_wis + 2
+        if "Animal" in choices:
+            skill_animal = mod_wis + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
+        if "Deception" in choices:
+            skill_deception = mod_cha + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Performance" in choices:
+            skill_performance = mod_cha + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
     print("   Checking for class bonus...")
     if char_class in ("Bard", "bard"):
-        def skill_choice_fn():
-            x, y, z = input("Chose three from: Athletics, Acrobatics, Sleight (of hand), Stealth, Arcana, History, Investigation, Nature, Religion, Animal (handling), Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion; separated by a space:  ").split()
-            if x not in ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"):
+        valid_options = ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion")
+        while True:
+            try:
+                x, y, z = input("Chose three from: Athletics, Acrobatics, Sleight (of hand), Stealth, Arcana, History, Investigation, Nature, Religion, Animal (handling), Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly three choices separated by spaces.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
-            if z not in ("Athletics", "Acrobatics", "Sleight", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"):
-                print("Invalid input", z)
-                skill_choice_fn()
+                continue
+            if z not in valid_options:
+                print("Invalid input, ", z)
+                continue
             if x in (y, z):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
+                continue
             if y in (x, z):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y, z)
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Acrobatics" in choices:
-                skill_acrobatics = mod_dex + 2
-            if "Sleight" in choices:
-                skill_sleight = mod_dex + 2
-            if "Stealth" in choices:
-                skill_stealth = mod_dex + 2
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Nature" in choices:
-                skill_nature = mod_int + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-            if "Animal" in choices:
-                skill_animal = mod_wis + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-            if "Deception" in choices:
-                skill_deception = mod_cha + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Performance" in choices:
-                skill_performance = mod_cha + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y, z)
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Acrobatics" in choices:
+            skill_acrobatics = mod_dex + 2
+        if "Sleight" in choices:
+            skill_sleight = mod_dex + 2
+        if "Stealth" in choices:
+            skill_stealth = mod_dex + 2
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Nature" in choices:
+            skill_nature = mod_int + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
+        if "Animal" in choices:
+            skill_animal = mod_wis + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
+        if "Deception" in choices:
+            skill_deception = mod_cha + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Performance" in choices:
+            skill_performance = mod_cha + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
     if char_class in ("Barbarian", "barbarian"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Animal (handling), Athletics, Intimidation, Nature, Perception, Survival; separated by a space:  ").split()
-            if x not in ("Animal", "Athletics", "Intimidation", "Nature", "Perception", "Survival"):
+        valid_options = ("Animal", "Athletics", "Intimidation", "Nature", "Perception", "Survival")
+        while True:
+            try:
+                x, y = input("Chose two from: Animal (handling), Athletics, Intimidation, Nature, Perception, Survival; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Animal", "Athletics", "Intimidation", "Nature", "Perception", "Survival"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Animal" in choices:
-                skill_animal = mod_wis + 2
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Nature" in choices:
-                skill_nature = mod_wis + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Animal" in choices:
+            skill_animal = mod_wis + 2
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Nature" in choices:
+            skill_nature = mod_wis + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
     if char_class in ("Cleric", "cleric"):
-        def skill_choice_fn():
-            x, y = input("Chose two two from: History, Insight, Medicine, Persuasion, Religion; separated by a space:  ").split()
-            if x not in ("History", "Insight", "Medicine", "Persuasion", "Religion"):
+        valid_options = ("History", "Insight", "Medicine", "Persuasion", "Religion")
+        while True:
+            try:
+                x, y = input("Chose two two from: History, Insight, Medicine, Persuasion, Religion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("History", "Insight", "Medicine", "Persuasion", "Religion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
     if char_class in ("Druid", "druid"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Arcana, Animal (handling), Insight, Medicine, Nature, Perception, Religion, Survival; separated by a space:  ").split()
-            if x not in ("Arcana", "Animal", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"):
+        valid_options = ("Arcana", "Animal", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival")
+        while True:
+            try:
+                x, y = input("Chose two from: Arcana, Animal (handling), Insight, Medicine, Nature, Perception, Religion, Survival; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Arcana", "Animal", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Nature" in choices:
-                skill_nature = mod_int + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Nature" in choices:
+            skill_nature = mod_int + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
     if char_class in ("Fighter", "fighter"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Acrobatics, Animal (handling), Athletics, History, Insight, Intimidation, Perception, Survival; separated by a space:  ").split()
-            if x not in ("Acrobatics", "Animal", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"):
+        valid_options = ("Acrobatics", "Animal", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival")
+        while True:
+            try:
+                x, y = input("Chose two from: Acrobatics, Animal (handling), Athletics, History, Insight, Intimidation, Perception, Survival; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Acrobatics", "Animal", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Acrobatics" in choices:
-                skill_acrobatics = mod_dex + 2
-            if "Animal" in choices:
-                skill_animal = mod_wis + 2
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Acrobatics" in choices:
+            skill_acrobatics = mod_dex + 2
+        if "Animal" in choices:
+            skill_animal = mod_wis + 2
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
     if char_class in ("Monk", "monk"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Acrobatics, Athletics, History, Insight, Religion, Stealth; separated by a space:  ").split()
-            if x not in ("Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"):
+        valid_options = ("Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth")
+        while True:
+            try:
+                x, y = input("Chose two from: Acrobatics, Athletics, History, Insight, Religion, Stealth; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Acrobatics" in choices:
-                skill_acrobatics = mod_dex + 2
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-            if "Stealth" in choices:
-                skill_stealth = mod_dex + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Acrobatics" in choices:
+            skill_acrobatics = mod_dex + 2
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
+        if "Stealth" in choices:
+            skill_stealth = mod_dex + 2
     if char_class in ("Paladin", "paladin"):
-        def skill_choice_fn():
-            x, y = input("Choose two from: Athletics, Insight, Intimidation, Medicine, Persuasion, Religion; separated by a space:  ").split()
-            if x not in ("Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"):
+        valid_options = ("Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion")
+        while True:
+            try:
+                x, y = input("Choose two from: Athletics, Insight, Intimidation, Medicine, Persuasion, Religion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
     if char_class in ("Ranger", "ranger"):
-        def skill_choice_fn():
-            x, y, z = input("Chose three from: Animal (handling), Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival; separated by a spaces:  ").split()
-            if x not in ("Animal", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"):
+        valid_options = ("Animal", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival")
+        while True:
+            try:
+                x, y, z = input("Chose three from: Animal (handling), Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival; separated by a spaces:  ").split()
+            except ValueError:
+                print("Please enter exactly three choices separated by spaces.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Animal", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
-            if z not in ("Animal", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"):
-                print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
+            if z not in valid_options:
+                print("Invalid input, ", z)
+                continue
             if x in (y, z):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
+                continue
             if y in (x, z):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y, z)
-            if "Animal" in choices:
-                skill_animal = mod_wis + 2
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Nature" in choices:
-                skill_nature = mod_int + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Stealth" in choices:
-                skill_stealth = mod_dex + 2
-            if "Survival" in choices:
-                skill_survival = mod_wis + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y, z)
+        if "Animal" in choices:
+            skill_animal = mod_wis + 2
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Nature" in choices:
+            skill_nature = mod_int + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Stealth" in choices:
+            skill_stealth = mod_dex + 2
+        if "Survival" in choices:
+            skill_survival = mod_wis + 2
     if char_class in ("Rogue", "rogue"):
-        def skill_choice_fn():
-            a, b, c, d = input("Chose four from: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight (of hand), Stealth; separated by spaces:  ").split()
-            if a not in ("Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight", "Stealth"):
+        valid_options = ("Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight", "Stealth")
+        while True:
+            try:
+                a, b, c, d = input("Chose four from: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight (of hand), Stealth; separated by spaces:  ").split()
+            except ValueError:
+                print("Please enter exactly four choices separated by spaces.")
+                continue
+            if a not in valid_options:
                 print("Invalid input, ", a)
-                skill_choice_fn()
-            if b not in ("Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight", "Stealth"):
+                continue
+            if b not in valid_options:
                 print("Invalid input, ", b)
-                skill_choice_fn()
-            if c not in ("Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight", "Stealth"):
+                continue
+            if c not in valid_options:
                 print("Invalid input, ", c)
-                skill_choice_fn()
-            if d not in ("Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight", "Stealth"):
+                continue
+            if d not in valid_options:
                 print("Invalid input, ", d)
-                skill_choice_fn()
+                continue
             if a in (b, c, d):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
+                continue
             if b in (a, c, d):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
+                continue
             if c in (a, b, d):
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (a, b, c, d)
-            if "Acrobatics" in choices:
-                skill_acrobatics = mod_dex + 2
-            if "Athletics" in choices:
-                skill_athletics = mod_str + 2
-            if "Deception" in choices:
-                skill_deception = mod_cha + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Perception" in choices:
-                skill_perception = mod_wis + 2
-            if "Performance" in choices:
-                skill_performance = mod_cha + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-            if "Sleight" in choices:
-                skill_sleight = mod_dex + 2
-            if "Stealth" in choices:
-                skill_stealth = mod_dex + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (a, b, c, d)
+        if "Acrobatics" in choices:
+            skill_acrobatics = mod_dex + 2
+        if "Athletics" in choices:
+            skill_athletics = mod_str + 2
+        if "Deception" in choices:
+            skill_deception = mod_cha + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Perception" in choices:
+            skill_perception = mod_wis + 2
+        if "Performance" in choices:
+            skill_performance = mod_cha + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
+        if "Sleight" in choices:
+            skill_sleight = mod_dex + 2
+        if "Stealth" in choices:
+            skill_stealth = mod_dex + 2
     if char_class in ("Sorcerer", "sorcerer"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Arcana, Deception, Insight, Intimidation, Persuasion, Religion; separated by a space:  ").split()
-            if x not in ("Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"):
+        valid_options = ("Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion")
+        while True:
+            try:
+                x, y = input("Chose two from: Arcana, Deception, Insight, Intimidation, Persuasion, Religion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "Deception" in choices:
-                skill_deception = mod_cha + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Persuasion" in choices:
-                skill_persuasion = mod_cha + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "Deception" in choices:
+            skill_deception = mod_cha + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Persuasion" in choices:
+            skill_persuasion = mod_cha + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
     if char_class in ("Warlock", "warlock"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Arcana, Deception, History, Intimidation, Investigation, Nature, Religion; separated by a space:  ").split()
-            if x not in ("Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"):
+        valid_options = ("Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion")
+        while True:
+            try:
+                x, y = input("Chose two from: Arcana, Deception, History, Intimidation, Investigation, Nature, Religion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "Deception" in choices:
-                skill_deception = mod_cha + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Intimidation" in choices:
-                skill_intimidation = mod_cha + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Nature" in choices:
-                skill_nature = mod_int + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "Deception" in choices:
+            skill_deception = mod_cha + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Intimidation" in choices:
+            skill_intimidation = mod_cha + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Nature" in choices:
+            skill_nature = mod_int + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
     if char_class in ("Wizard", "wizard"):
-        def skill_choice_fn():
-            x, y = input("Chose two from: Arcana, History, Insight, Investigation, Medicine, Religion; separated by a space:  ").split()
-            if x not in ("Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"):
+        valid_options = ("Arcana", "History", "Insight", "Investigation", "Medicine", "Religion")
+        while True:
+            try:
+                x, y = input("Chose two from: Arcana, History, Insight, Investigation, Medicine, Religion; separated by a space:  ").split()
+            except ValueError:
+                print("Please enter exactly two choices separated by a space.")
+                continue
+            if x not in valid_options:
                 print("Invalid input, ", x)
-                skill_choice_fn()
-            if y not in ("Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"):
+                continue
+            if y not in valid_options:
                 print("Invalid input, ", y)
-                skill_choice_fn()
+                continue
             if x == y:
                 print("You cannot make the same selection twice.")
-                skill_choice_fn()
-            choices = (x, y)
-            if "Arcana" in choices:
-                skill_arcana = mod_int + 2
-            if "History" in choices:
-                skill_history = mod_int + 2
-            if "Insight" in choices:
-                skill_insight = mod_wis + 2
-            if "Investigation" in choices:
-                skill_investigation = mod_int + 2
-            if "Medicine" in choices:
-                skill_medicine = mod_wis + 2
-            if "Religion" in choices:
-                skill_religion = mod_int + 2
-        skill_choice_fn()
+                continue
+            break
+        choices = (x, y)
+        if "Arcana" in choices:
+            skill_arcana = mod_int + 2
+        if "History" in choices:
+            skill_history = mod_int + 2
+        if "Insight" in choices:
+            skill_insight = mod_wis + 2
+        if "Investigation" in choices:
+            skill_investigation = mod_int + 2
+        if "Medicine" in choices:
+            skill_medicine = mod_wis + 2
+        if "Religion" in choices:
+            skill_religion = mod_int + 2
 
         
 def hp_fn():
@@ -3862,56 +3926,47 @@ def hp_fn():
 
 
 def alignment_fn():
-    def lawchaos():
-        global align_lawchaos
-        align_lawchaos = input("Choose (L)awful, (C)haotic, or (N)eutral: ")
-        if align_lawchaos in ("L", "l", "Lawful", "lawful"):
-            align_lawchaos = "Lawful"
-        elif align_lawchaos in ("C", "c", "Chaotic", "chaotic"):
-            align_lawchaos = "Chaotic"
-        elif align_lawchaos in ("N", "n", "Neutral", "neutral"):
-            align_lawchaos = "Neutral"
-        else:
-            print("Invalid choice")
-            lawchaos()
-
-    def goodevil():
-        global align_goodevil
-        align_goodevil = input("Choose (G)ood, (E)vil, or (N)eutral: ")
-        if align_goodevil in ("G", "g", "Good", "good"):
-            align_goodevil = "Good"
-        elif align_goodevil in ("E", "e", "Evil", "evil"):
-            align_goodevil = "Evil"
-        elif align_goodevil in ("N", "n", "Neutral", "neutral"):
-            align_goodevil = "Neutral"
-        else:
-            print("Invalid choice")
-            goodevil()
-
-    def cont():
-        choice = input("Is this correct? (y/n) ")
-        if choice in ("Y", "y", "Yes", "yes"):
-            pass
-        elif choice in ("N", "n", "No", "no"):
-            alignment_fn()
-        else:
-            cont()
-
+    global align_lawchaos
+    global align_goodevil
     print("Finally choose alignment.")
-    rnd_align = input("Do you want to use a random alignment? [Y]: ")
-    if rnd_align in ("Y", "y", "Yes", "yes", ""):
-        goodevil_ls = ["Good", "Evil", "Neutral"]
-        lawchaos_ls = ["Lawful", "Chaotic", "Neutral"]
-        global align_lawchaos
-        global align_goodevil
-        align_lawchaos = random.choice(lawchaos_ls)
-        align_goodevil = random.choice(goodevil_ls)
-    elif rnd_align in ("N", "n", "No", "no"):
-        lawchaos()
-        goodevil()
-    else:
-        print("Invalid choice")
-        alignment_fn()
+    while True:
+        rnd_align = input("Do you want to use a random alignment? [Y]: ")
+        if rnd_align in ("Y", "y", "Yes", "yes", ""):
+            goodevil_ls = ["Good", "Evil", "Neutral"]
+            lawchaos_ls = ["Lawful", "Chaotic", "Neutral"]
+            align_lawchaos = random.choice(lawchaos_ls)
+            align_goodevil = random.choice(goodevil_ls)
+            break
+        elif rnd_align in ("N", "n", "No", "no"):
+            while True:
+                align_lawchaos = input("Choose (L)awful, (C)haotic, or (N)eutral: ")
+                if align_lawchaos in ("L", "l", "Lawful", "lawful"):
+                    align_lawchaos = "Lawful"
+                    break
+                elif align_lawchaos in ("C", "c", "Chaotic", "chaotic"):
+                    align_lawchaos = "Chaotic"
+                    break
+                elif align_lawchaos in ("N", "n", "Neutral", "neutral"):
+                    align_lawchaos = "Neutral"
+                    break
+                else:
+                    print("Invalid choice")
+            while True:
+                align_goodevil = input("Choose (G)ood, (E)vil, or (N)eutral: ")
+                if align_goodevil in ("G", "g", "Good", "good"):
+                    align_goodevil = "Good"
+                    break
+                elif align_goodevil in ("E", "e", "Evil", "evil"):
+                    align_goodevil = "Evil"
+                    break
+                elif align_goodevil in ("N", "n", "Neutral", "neutral"):
+                    align_goodevil = "Neutral"
+                    break
+                else:
+                    print("Invalid choice")
+            break
+        else:
+            print("Invalid choice")
     print("Your alignment is ", align_lawchaos, "-", align_goodevil)
 
     
