@@ -61,6 +61,17 @@ yay -S dnd-tools
 
 #### Changelog:
 
+**v0.3.1:**
+- Fixed overlapping range in CR 5-10 loot table (values 67-69 were unreachable)
+- Fixed coin generation for CR 0-4: gold pieces were always 0 (dice rolls never accumulated)
+- Fixed coin output displaying electrum value instead of copper
+- Fixed crash in CR 11-16 loot table (`random.choice(list(item))` used wrong variable)
+- Fixed crash in CR 17+ loot table (keys from item_e looked up in item_d)
+- Fixed Arcana base skill using Dexterity modifier instead of Intelligence
+- Fixed armor name typos: "chain male"/"scale male"/"splint male" -> "mail" (5 occurrences)
+- Fixed "Efretti chain" -> "Efreeti chain"
+- Filled missing keys in loot tables: item_f (21-23), item_g_12 (7), item_h (62), item_i (76)
+
 **v0.3.0:**
 - Removed numpy dependency — script now uses only Python standard library
 - Updated shebang to `python3` and removed Python 2 `__future__` imports
