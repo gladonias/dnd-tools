@@ -1030,7 +1030,7 @@ def loot_cr5_fn():
         gem_t = roll_gem(art_25)
         gem_n = roll_dice(2, 4)
         item_loot.extend(roll_items(item_c, 1, 4))
-    elif 63 < d100 <= 69:
+    elif 66 < d100 <= 69:
         gem_t = roll_gem(gem_50)
         gem_n = roll_dice(3, 6)
         item_loot.extend(roll_items(item_c, 1, 4))
@@ -1152,11 +1152,7 @@ def loot_cr11_fn():
         gem_t = roll_gem(gem_500)
         gem_n = roll_dice(3, 6)
         item_loot.extend(roll_items(item_a, 1, 4))
-        item_n = random.randint(1, 6)
-        for _ in range(item_n):
-            item = random.choice(list(item))
-            item = item_b[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_b, 1, 6))
     elif 26 < d100 <= 29:
         gem_t = roll_gem(gem_1000)
         gem_n = roll_dice(3, 6)
@@ -1395,19 +1391,11 @@ def loot_cr17_fn():
     elif 46 < d100 <= 52:
         gem_t = roll_gem(gem_1000)
         gem_n = roll_dice(3, 6)
-        item_n = random.randint(1, 6)
-        for _ in range(item_n):
-            item = random.choice(list(item_e))
-            item = item_d[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_e, 1, 6))
     elif 52 < d100 <= 58:
         gem_t = roll_gem(art_2500)
         gem_n = random.randint(1, 10)
-        item_n = random.randint(1, 6)
-        for _ in range(item_n):
-            item = random.choice(list(item_e))
-            item = item_d[item]
-            item_loot.append(item)
+        item_loot.extend(roll_items(item_e, 1, 6))
     elif 58 < d100 <= 63:
         gem_t = roll_gem(art_7500)
         gem_n = random.randint(1, 4)
@@ -1695,7 +1683,8 @@ def loot_coins_fn():
             sp = sp * 100
             for dice in range(2):
                 rolls = random.randint(1, 6)
-                gp = gp * 10
+                gp = gp + rolls
+            gp = gp * 10
         elif 4 < cr <= 10:
             for dice in range(2):
                 rolls = random.randint(1, 6)
@@ -1737,7 +1726,7 @@ def loot_coins_fn():
         loot_coins_fn()
     print("")
     print("## Coins ##")
-    print("cp: ", ep)
+    print("cp: ", cp)
     print("sp: ", sp)
     print("ep: ", ep)
     print("gp: ", gp)
@@ -2898,7 +2887,7 @@ def skills_fn():
     global skill_stealth
     skill_stealth = mod_dex
     global skill_arcana
-    skill_arcana = mod_dex
+    skill_arcana = mod_int
     global skill_history
     skill_history = mod_int
     global skill_investigation
