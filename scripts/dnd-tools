@@ -170,7 +170,7 @@ art_250 = expand({
 
 art_750 = expand({
     1: "Silver chalice with moonstones",
-    2: "Sliver-plated steel longsword with jet set in hilt",
+    2: "Silver-plated steel longsword with jet set in hilt",
     3: "Carved hard of exotic wood with ivory inlay and zircon gems",
     4: "Small gold idol",
     5: "Gold dragon comb set with red garnets as eyes",
@@ -229,8 +229,8 @@ item_b = expand({
     range(60, 64): "Spell scroll - 3rd level",
     range(65, 67): "Bag of holding",
     range(68, 70): "Keoghtom ointment",
-    range(71, 72): "Oil of slipperiness",
-    range(74, 75): "Dust of disappearance",
+    range(71, 74): "Oil of slipperiness",
+    range(74, 76): "Dust of disappearance",
     range(76, 77): "Dust of dryness",
     range(78, 79): "Dust of sneezing and choking",
     range(80, 81): "Elemental gem",
@@ -359,7 +359,7 @@ item_f = expand({
     83: "Headband of intellect",
     84: "Helm of telepathy",
     85: "Doss lute of the bards",
-    86: "Fochlucan bandor of the bards",
+    86: "Fochlucan bandore of the bards",
     87: "Mac-Fuirmidh cittern of the bards",
     88: "Medallion of thoughts",
     89: "Necklace of adaptation",
@@ -377,7 +377,8 @@ item_f = expand({
 })
 
 item_g = expand({
-    range(1, 11): "Weapon, +2",
+    range(1, 12): "Weapon, +2",
+    range(12, 15): "Figurine of wondrous power (roll item_g_12)",
     15: "Adamantine breastplate",
     16: "Adamantine splint male",
     17: "Amulet of health",
@@ -422,6 +423,7 @@ item_g = expand({
     56: "Armor, +1 leather",
     57: "Armor of resistance (leather)",
     58: "Mace of disruption",
+    59: "Mace of terror",
     60: "Mace of smiting",
     61: "Mantle of spell resistance",
     62: "Necklace of prayer beads",
@@ -733,7 +735,7 @@ race_short = [
 
 class_desc = [
     "Barbarian - The relentless combatant fueled by fury.",
-    "Bard      - A story witty storyteller or musician.",
+    "Bard      - A witty storyteller or musician.",
     "Cleric    - A holy man capable of healing wounds.",
     "Druid     - A nomad devoted to the powers of Nature",
     "Fighter   - The skilled combatant and strategist.",
@@ -759,7 +761,7 @@ class_npc = [
 ]
 
 culture_npc = [
-    "Babylonian", "Celtic", "Egyptian", "Greek", "Roman", "Sumerian", "English", "French", "German", "Italian", "Norse", "Saxon", "Slavic", "Spanish", "Arabic", "Chineese", "Hebrew", "Hindu", "Japanese", "Mongolian", "Persian", "Congolese", "Ethiopian", "Malian", "Algonquin", "Aztec", "Inkan", "Inuit", "Navajo", "Sioux"
+    "Babylonian", "Celtic", "Egyptian", "Greek", "Roman", "Sumerian", "English", "French", "German", "Italian", "Norse", "Saxon", "Slavic", "Spanish", "Arabic", "Chinese", "Hebrew", "Hindu", "Japanese", "Mongolian", "Persian", "Congolese", "Ethiopian", "Malian", "Algonquin", "Aztec", "Inkan", "Inuit", "Navajo", "Sioux"
 ]
 
 avg_stats = [
@@ -2122,7 +2124,7 @@ def reveal_cards_fn():
 
     print("")
     print("Card 4 - ", pos_4)
-    print("Strahd\'s Enemy (where to find an ally:  This card sheds light on one who will help you greatly in the battle against darkness")
+    print("Strahd\'s Enemy (where to find an ally):  This card sheds light on one who will help you greatly in the battle against darkness")
 
     print("")
     print("card 5 - ", pos_5)
