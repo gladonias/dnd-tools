@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-from __future__ import print_function, division
+#!/usr/bin/env python3
 
 
 ###########
@@ -8,7 +7,6 @@ from __future__ import print_function, division
 
 import sys
 import random
-import numpy as np
 
 try:
     # Use the system PRNG if possible
@@ -847,13 +845,14 @@ def start_fn():
         dice = input_int("How many dice you wanna roll? ")
         sides = input_int("How many sides on each die? ")
         mod = input_int("How much is the total modifier? ")
-        dice_array = np.random.randint(1, high=sides + 1, size=dice)
+        dice_array = [random.randint(1, sides) for _ in range(dice)]
         print('{} + [{}] = {}'.format(dice_array, mod, sum(dice_array) + mod))
         start_fn()
     elif option in ("i", "3"):
         n_players = input_int("How many initiative rolls (e.g. players + monsters)? ")
         mod = input_int("How much is each modifier? ")
-        print('{}'.format(np.random.randint(1, high=21, size=n_players) + mod))
+        rolls = [random.randint(1, 20) + mod for _ in range(n_players)]
+        print('{}'.format(rolls))
         start_fn()
     elif option in ("x", "4"):
         encounter_fn()
