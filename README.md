@@ -23,20 +23,33 @@ The aim of this project, inspired by [donjon](http://donjon.bin.sh/), is to crea
 
 ---
 
+#### Requirements:
+
+- Python 3.6 or later
+- No external dependencies
+
+Runs on **Linux**, **macOS**, and **Windows**.
+
+---
+
 #### Installation / Usage:
 
 **From source (any platform with Python 3):**
 ```
 $ git clone <this-repo-url>
 $ cd dnd-tools
-$ pip install numpy
 $ python setup.py install
 $ dnd-tools
 ```
 
-Or run directly:
+Or run directly without installing:
 ```
-$ python scripts/dnd-tools
+$ python3 scripts/dnd-tools
+```
+
+**Windows:**
+```
+python scripts\dnd-tools
 ```
 
 **Arch-based distros** (original AUR package):
@@ -46,30 +59,31 @@ yay -S dnd-tools
 
 ---
 
-#### Changelog (v0.2.0):
+#### Changelog:
 
-**Critical bug fixes:**
+**v0.3.0:**
+- Removed numpy dependency — script now uses only Python standard library
+- Updated shebang to `python3` and removed Python 2 `__future__` imports
+- Switched setup.py from deprecated `distutils` to `setuptools`
+- Added `python_requires='>=3.6'` to setup.py
+- Fixed missing keys in loot tables (item_b key 73, item_g keys 11-14 and 59)
+- Fixed typos: "Sliver-plated" -> "Silver-plated", "Fochlucan bandor" -> "Fochlucan bandore", "Chineese" -> "Chinese"
+- Fixed grammar: "A story witty storyteller" -> "A witty storyteller"
+- Fixed unmatched parenthesis in Tarokka card output
+
+**v0.2.0:**
 - Fixed SyntaxError (missing colon) that prevented the script from running
-- Fixed broken boolean logic in all skill proficiency assignments across 13 class/race sections (`if x or y == "value"` was always true)
-- Fixed garbled loot table entry ("Potrange of keys in dictionaryion of fire breath" -> "Potion of fire breath")
-- Fixed multiple variable name typos in skill assignments (skill_peception, skill_surviavl, skill_slieght, etc.)
-- Fixed Cleric Medicine skill setting wrong variable (skill_insight instead of skill_medicine)
-- Fixed Bard Animal Handling setting skill_religion instead of skill_animal
-- Fixed Wizard Insight using wrong modifier (mod_int instead of mod_wis)
-
-**High priority fixes:**
-- Replaced unsafe stdout redirection for character save with proper file I/O and path sanitization
-- Added input validation for all integer inputs (no more crashes on non-numeric input)
+- Fixed broken boolean logic in all skill proficiency assignments across 13 class/race sections
+- Fixed garbled loot table entry ("Potion of fire breath")
+- Fixed multiple variable name typos in skill assignments
+- Replaced unsafe stdout redirection for character save with proper file I/O
+- Added input validation for all integer inputs
 - Replaced recursive input validation with while loops to prevent stack overflow
-- Fixed "Intimation" typo to "Intimidation" in Sorcerer skill prompt
-
-**Code quality improvements:**
-- Removed Python 2 compatibility shim (xrange/raw_input)
-- Extracted roll_dice(), roll_gem(), roll_items() helpers to reduce loot function duplication (~745 lines reduced to ~273)
-- Removed unnecessary math and itertools imports
-- Normalized input case handling with .lower() and input_yn() helper
+- Removed Python 2 compatibility shim
+- Extracted loot helper functions to reduce duplication
+- Normalized input case handling with `.lower()` and `input_yn()` helper
 - Added docstrings to all major functions
-- Fixed loop variable shadowing global char_class
+- Fixed loop variable shadowing
 
 ---
 
